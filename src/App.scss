@@ -3,10 +3,6 @@ body, html {
   font-weight: 300, 600, 800;
 }
 
-body {
-  margin: 0;
-}
-
 :root {
   --dark-blue: hsl(209, 23%, 22%);
   --very-dark-blue: hsl(207, 26%, 17%);
@@ -15,3 +11,9 @@ body {
   --very-light-gray: hsl(0, 0%, 98%);
   --white: hsl(0, 0%, 100%);
 }
+
+body {
+  margin: 0;
+  background-color: var(--very-light-gray);
+}
+
