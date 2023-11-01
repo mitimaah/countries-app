@@ -1,7 +1,15 @@
 import { Container } from "@mui/material";
 import React from "react";
+import { Dropdown } from "../ui/molecules/Dropdown/Dropdown";
 import { Searchbar } from "../ui/molecules/SearchBar";
-import { SelectBar } from "../ui/molecules/SelectBar";
+
+const options = [
+  "Oliver Hansen",
+  "Van Henry",
+  "April Tucker",
+  "Ralph Hubbard",
+  "Omar Alexander",
+];
 
 export const CountriesPage = () => {
   return (
@@ -16,6 +24,11 @@ export const CountriesPage = () => {
         onChange={() => {}}
         searchBarWidth={"1pm"}
       />
-     </Container>
+      <Dropdown
+        children={"Filter by Region"}
+        options={options}
+        handleChange={(value) => console.log(value)}
+      />
+    </Container>
   );
 };
