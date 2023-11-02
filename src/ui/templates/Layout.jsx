@@ -6,8 +6,8 @@ export const Layout = ({ children }) => {
   return (
     <>
       <AppBar />
-      <Container maxWidth={"xl"} sx={{ paddingBottom: 6 }}>
-        <Box mt={6}>{children}</Box>
+      <Container maxWidth={"xl"}>
+        <Box mt={5}>{children}</Box>
       </Container>
     </>
   );

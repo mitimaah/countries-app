@@ -13,6 +13,7 @@ export const Searchbar = ({ placeholder, onChange, searchBarWidth }) => {
         alignItems: "center",
         boxShadow: "0px 0px 4px 4px rgba(245, 245, 245, 1)",
         width: "25rem",
+        ".MuiBox-root": { padding: 0 },
       }}
     >
       <SearchIcon

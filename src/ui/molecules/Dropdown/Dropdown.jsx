@@ -30,7 +30,11 @@ export const Dropdown = ({ children, options, handleChange }) => {
             background: "hsl(0, 0%, 100%)",
             ".MuiOutlinedInput-notchedOutline": { border: 0 },
             borderRadius: "0.3rem",
-            ".MuiSelect-iconOpen": {transform: 'rotate(0deg)'}
+            ".MuiSelect-iconOpen": { transform: "rotate(0deg)" },
+            ".MuiSvgIcon-root": {
+              fontSize: "20px",
+              color: "hsl(200, 15%, 8%)",
+            },
           }}
           select
           id="demo-multiple-name"
