@@ -2,10 +2,11 @@
 // import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import React from "react";
-import data from "../data.json";
-import { Dropdown } from "../ui/molecules/Dropdown/Dropdown";
-import { Searchbar } from "../ui/molecules/SearchBar";
-import { CountryWidget } from "../ui/organisms/CountryWidget";
+import data from "../../data.json";
+import { Dropdown } from "../../ui/molecules/Dropdown/Dropdown";
+import { Searchbar } from "../../ui/molecules/Searchbar/SearchBar";
+import { CountryWidget } from "../../ui/organisms/CountryWidget/CountryWidget";
+import "./Countries.page.scss";
 
 const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
@@ -27,20 +28,14 @@ export const CountriesPage = () => {
   // console.log(countries)
 
   return (
-    <div style={{ margin: "0 2rem" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "2.5rem",
-        }}
-      >
+    <div className='countriesPage'>
+      <div className="coutriesPageContainer">
         <Searchbar
           placeholder={"Search for a country..."}
           onChange={() => {}}
           searchBarWidth={"1pm"}
         />
-        <Dropdown
+        <Dropdown 
           children={"Filter by Region"}
           options={regions}
           handleChange={(value) => console.log(value)}
@@ -56,9 +51,9 @@ export const CountriesPage = () => {
         />
       ))} */}
       </div>
-      <Grid
+      <Grid className="gridContainer"
         mt={8}
-        container
+        container 
         rowSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
         columnSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
       >

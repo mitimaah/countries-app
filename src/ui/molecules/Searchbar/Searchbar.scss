@@ -1,0 +1,38 @@
+.MuiBox-root {
+  padding: 0;
+}
+
+.searchbarContainer {
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  width: 30rem;
+}
+
+.searchIcon {
+  height: 1.2rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  color: var(--very-dark-blue) !important;
+}
+
+.searchInput {
+  color: var(--very-dark-blue);
+  font-size: var(--homepage-items) !important;
+}
+
+@media only screen and (max-width: 750px) {
+  .searchbarContainer {
+    max-width: 25rem;
+    min-height: 40px;
+  }
+}
+
+@media only screen and (max-width: 445px) {
+  .searchbarContainer {
+    max-width: 20.5rem;
+  }
+}

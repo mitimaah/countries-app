@@ -8,23 +8,18 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import "./CountryWidget.scss";
 
 export const CountryWidget = ({ flag, name, population, region, capital }) => {
   return (
-    <Card
-      sx={{
-        maxWidth: 300,
-        minWidth: 250,
-        boxShadow: "0px 0px 4px 4px rgba(245, 245, 245, 1)",
-      }}
-    >
+    <Card className="widgetCard">
       <CardMedia sx={{ height: 170 }} image={flag} title="green iguana" />
       <CardContent>
         <Typography
+          className="cardHeader"
           gutterBottom
           variant="body1"
           component="div"
-          sx={{ ml: 2, fontWeight: "bold", color: "hsl(200, 15%, 8%)" }}
         >
           {name}
         </Typography>
@@ -34,13 +29,13 @@ export const CountryWidget = ({ flag, name, population, region, capital }) => {
               secondary={
                 <React.Fragment>
                   <Typography
-                    sx={{ display: "inline", color: "hsl(200, 15%, 8%)" }}
+                    className="listItemText"
                     component="span"
                     variant="body2"
                   >
                     Population:
                   </Typography>
-                  {` ${population.toLocaleString('en-US')}`}
+                  {` ${population.toLocaleString("en-US")}`}
                 </React.Fragment>
               }
             />
@@ -50,7 +45,7 @@ export const CountryWidget = ({ flag, name, population, region, capital }) => {
               secondary={
                 <React.Fragment>
                   <Typography
-                    sx={{ display: "inline" }}
+                    className="listItemText"
                     component="span"
                     variant="body2"
                     color="text.primary"
@@ -67,7 +62,7 @@ export const CountryWidget = ({ flag, name, population, region, capital }) => {
               secondary={
                 <React.Fragment>
                   <Typography
-                    sx={{ display: "inline" }}
+                    className="listItemText"
                     component="span"
                     variant="body2"
                     color="text.primary"

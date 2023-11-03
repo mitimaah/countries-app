@@ -1,0 +1,34 @@
+.muiAppBarr {
+  background: var(--white) !important;
+  box-shadow: 0px 0px 8px 4px rgba(240, 240, 240, 1) !important;
+  padding: 0 2rem;
+}
+
+.logo {
+  color: var(--very-dark-blue);
+  font-weight: var(--semi-bold) !important;
+  flex-grow: 1 !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+}
+
+.darkModeButton {
+  color: var(--very-dark-blue) !important;
+  text-transform: none !important;
+  background-color: var(--white) !important;
+}
+
+@media only screen and (max-width: 470px) {
+    .muiAppBarr {
+        padding: 0 1rem;  
+    }
+
+  .logo {
+    font-size: 16px !important;
+}
+
+  .darkModeButton {
+    font-size: var(--homepage-items) !important;
+
+  }
+}
