@@ -1,6 +1,6 @@
-body, html {
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 300, 600, 800;
+body,
+html {
+  font-family: "Nunito Sans", sans-serif;
 }
 
 :root {
@@ -10,10 +10,15 @@ body, html {
   --dark-gray: hsl(0, 0%, 52%);
   --very-light-gray: hsl(0, 0%, 98%);
   --white: hsl(0, 0%, 100%);
+  --light: 300;
+  --semi-bold: 600;
+  --extra-bold: 800;
+  --box-shadow: 0px 0px 4px 4px rgba(245, 245, 245, 1);
+  --homepage-items: 14px;
+  --detail-page-items: 16px;
 }
 
 body {
   margin: 0;
   background-color: var(--very-light-gray);
 }
-

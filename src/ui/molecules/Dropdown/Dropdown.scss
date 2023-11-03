@@ -1,13 +1,47 @@
+.MuiInputLabel-root {
+  color: var(--very-dark-blue) !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border: 0 !important;
+}
+
+.MuiSelect-iconOpen {
+  transform: rotate(0deg) !important;
+}
+
+.MuiSvgIcon-root {
+  font-size: 20px !important;
+  color: var(--very-dark-blue) !important;
+}
+
+.MuiFormControl-root .Mui-focused .MuiOutlinedInput-notchedOutline {
+  border: 0;
+}
+
 .dropdownContainer {
   border-radius: 0.3rem;
-  padding: "0.5rem";
   background: var(--white);
   display: flex;
   align-items: center;
-  box-shadow: 0px 0px 4px 4px rgba(245, 245, 245, 1);
+  box-shadow: var(--box-shadow);
   width: 10rem;
 }
 
-.MuiInputLabel-root {
+.inputLabel {
   color: var(--very-dark-blue) !important;
+  font-size: var(--homepage-items) !important;
+}
+
+.select {
+  box-shadow: var(--box-shadow);
+  background: var(--white);
+  border-radius: 0.3rem;
+}
+
+@media only screen and (max-width: 750px) {
+  .dropdownContainer {
+    min-width: 15rem;
+    margin-top: 2rem;
+  }
 }

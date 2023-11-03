@@ -1,0 +1,32 @@
+.countriesPage {
+  margin: 0 2rem;
+}
+
+.coutriesPageContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+@media only screen and (max-width: 750px) {
+  .countriesPage {
+    margin: 0 2rem;
+  }
+
+  .coutriesPageContainer {
+    flex-direction: column;
+  }
+
+  .dropdown {
+    margin-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  .countriesPage {
+    margin: 0 1rem;
+  }
+  .gridContainer {
+    padding: 0 3rem;
+  }
+}

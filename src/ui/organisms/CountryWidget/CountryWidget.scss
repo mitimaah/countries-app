@@ -1,0 +1,17 @@
+.widgetCard {
+  max-width: 300;
+  min-width: 250;
+  box-shadow: var(--box-shadow) !important;
+  cursor: pointer;
+}
+
+.cardHeader {
+  margin-left: 1rem !important;
+  color: var(--very-dark-blue);
+  font-weight: var(--extra-bold) !important;
+}
+
+.listItemText {
+  color: var(--very-dark-blue);
+  display: inline;
+}

@@ -6,7 +6,7 @@ export const Layout = ({ children }) => {
   return (
     <>
       <AppBar />
-      <Container maxWidth={"xl"}>
+      <Container maxWidth={"xl"} disableGutters>
         <Box mt={5}>{children}</Box>
       </Container>
     </>

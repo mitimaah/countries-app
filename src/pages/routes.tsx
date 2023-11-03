@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { CountriesPage } from "./Countries.page";
-import { CountryPage } from "./Country.page";
+import { CountryPage } from "./CountryPage/Country.page";
+import { CountriesPage } from "./Countries.page/Countries.page";
 
 interface PathsOpts {
   path: string;

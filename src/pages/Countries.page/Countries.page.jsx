@@ -2,10 +2,11 @@
 // import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import React from "react";
-import data from "../data.json";
-import { Dropdown } from "../ui/molecules/Dropdown/Dropdown";
-import { Searchbar } from "../ui/molecules/SearchBar";
-import { CountryWidget } from "../ui/organisms/CountryWidget";
+import data from "../../data.json";
+import { Dropdown } from "../../ui/molecules/Dropdown/Dropdown";
+import { Searchbar } from "../../ui/molecules/Searchbar/SearchBar";
+import { CountryWidget } from "../../ui/organisms/CountryWidget/CountryWidget";
+import "./Countries.page.scss";
 
 const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
@@ -27,19 +28,14 @@ export const CountriesPage = () => {
   // console.log(countries)
 
   return (
-    <div style={{ margin: "0 2rem" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
+    <div className='countriesPage'>
+      <div className="coutriesPageContainer">
         <Searchbar
           placeholder={"Search for a country..."}
           onChange={() => {}}
           searchBarWidth={"1pm"}
         />
-        <Dropdown
+        <Dropdown 
           children={"Filter by Region"}
           options={regions}
           handleChange={(value) => console.log(value)}
@@ -54,23 +50,17 @@ export const CountriesPage = () => {
           capital={capital}
         />
       ))} */}
-        {/* <CountryWidget
-        flag={germany.flags.png}
-        name={germany.name.common}
-        population={germany.name.population}
-        region={germany.continents}
-        capital={germany.capital}
-      /> */}
       </div>
-      <Grid
-        mt={1}
-        container
-        rowSpacing={4}
-        columnSpacing={{ xs: 1, sm: 3, md: 10 }}
+      <Grid className="gridContainer"
+        mt={8}
+        container 
+        rowSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
+        columnSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
       >
         {data.map(({ flags, name, population, capital, region }, index) => (
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <CountryWidget
+              key={index}
               flag={flags.png}
               name={name}
               population={population}
