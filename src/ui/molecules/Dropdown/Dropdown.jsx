@@ -47,7 +47,7 @@ export const Dropdown = ({ children, options, handleChange }) => {
               sx: {
                 "& .MuiPaper-root": {
                   marginTop: "0.3rem",
-                  boxShadow: "0px 0px 4px 4px rgba(245, 245, 245, 1)",
+                  boxShadow: "0px 0px 2px 2px rgba(245, 245, 245, 1)",
                 },
               },
             },

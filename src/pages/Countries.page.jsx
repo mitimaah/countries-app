@@ -32,6 +32,7 @@ export const CountriesPage = () => {
         style={{
           display: "flex",
           justifyContent: "space-between",
+          marginBottom: "2.5rem",
         }}
       >
         <Searchbar
@@ -54,23 +55,17 @@ export const CountriesPage = () => {
           capital={capital}
         />
       ))} */}
-        {/* <CountryWidget
-        flag={germany.flags.png}
-        name={germany.name.common}
-        population={germany.name.population}
-        region={germany.continents}
-        capital={germany.capital}
-      /> */}
       </div>
       <Grid
-        mt={1}
+        mt={8}
         container
-        rowSpacing={4}
-        columnSpacing={{ xs: 1, sm: 3, md: 10 }}
+        rowSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
+        columnSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
       >
         {data.map(({ flags, name, population, capital, region }, index) => (
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <CountryWidget
+              key={index}
               flag={flags.png}
               name={name}
               population={population}
