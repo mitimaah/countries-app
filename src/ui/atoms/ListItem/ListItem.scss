@@ -1,0 +1,12 @@
+.listItemText {
+  color: var(--very-dark-blue);
+  display: inline;
+}
+
+.item:nth-child(-n + 5) {
+  grid-column: 1;
+}
+
+.item:nth-child(n + 6) {
+  grid-column: 2;
+}
