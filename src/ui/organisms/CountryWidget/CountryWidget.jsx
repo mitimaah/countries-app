@@ -1,19 +1,30 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, List, Typography } from "@mui/material";
 import React from "react";
 import "./CountryWidget.scss";
+import { ListItem } from "../../atoms/ListItem/ListItem";
 
 export const CountryWidget = ({ flag, name, population, region, capital }) => {
+  const listItems = [
+    {
+      id: 1,
+      title: "Population: ",
+      value: `${population.toLocaleString("en-US")}`,
+    },
+    {
+      id: 2,
+      title: "Region: ",
+      value: region,
+    },
+    {
+      id: 3,
+      title: "Capital: ",
+      value: capital,
+    },
+  ];
+
   return (
     <Card className="widgetCard">
-      <CardMedia sx={{ height: 170 }} image={flag} title="green iguana" />
+      <CardMedia sx={{ height: 170 }} image={flag} title="flag" />
       <CardContent>
         <Typography
           className="cardHeader"
@@ -24,56 +35,9 @@ export const CountryWidget = ({ flag, name, population, region, capital }) => {
           {name}
         </Typography>
         <List sx={{ ml: 2 }}>
-          <ListItem disablePadding>
-            <ListItemText
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    className="listItemText"
-                    component="span"
-                    variant="body2"
-                  >
-                    Population:
-                  </Typography>
-                  {` ${population.toLocaleString("en-US")}`}
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemText
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    className="listItemText"
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    Region:
-                  </Typography>
-                  {` ${region}`}
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemText
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    className="listItemText"
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    Capital:
-                  </Typography>
-                  {` ${capital}`}
-                </React.Fragment>
-              }
-            />
-          </ListItem>
+          {listItems.map((el) => (
+            <ListItem key={el.id} title={el.title} value={el.value} style={{fontSize: '14px'}}/>
+          ))}
         </List>
       </CardContent>
     </Card>

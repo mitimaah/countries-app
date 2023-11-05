@@ -1,0 +1,30 @@
+.countryPage {
+  margin: 0 2rem;
+}
+
+.goBackButton {
+  color: var(--very-dark-blue) !important;
+  text-transform: none !important;
+  background-color: var(--white) !important;
+  box-shadow: var(--box-shadow);
+  border-radius: 0.4rem !important;
+  padding: 0.5rem 2.5rem 0.5rem 2rem !important;
+}
+
+.coutryPageContainer {
+  display: flex;
+  // justify-content: flex-start;
+  align-items: center;
+  gap: 5rem;
+  margin-top: 4rem;
+}
+
+.borderButton {
+  color: var(--very-dark-blue) !important;
+  text-transform: none !important;
+  background-color: var(--white) !important;
+  box-shadow: var(--box-shadow);
+  border-radius: 0.4rem !important;
+  padding: 0 2rem 0 1.5rem !important;
+  margin: 0 0.5rem 0 0.5rem;
+}
