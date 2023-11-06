@@ -8,23 +8,21 @@ interface PathsOpts {
   element: JSX.Element;
 }
 
-const Paths = () => {
-  const generatePaths: () => any[] = () => {
-    const paths: PathsOpts[] = [
-      {
-        path: "/",
-        element: <CountriesPage />,
-      },
-      {
-        path: "/:id",
-        element: <CountryPage />,
-      },
-    ];
+const paths: PathsOpts[] = [
+  {
+    path: "/",
+    element: <CountriesPage />,
+  },
+  {
+    path: "/:id",
+    element: <CountryPage />,
+  },
+];
 
-    return paths.map(({ path, element }, index) => (
-      <Route key={index} element={element} path={path} />
-    ));
-  };
-  return <Routes>{generatePaths()}</Routes>;
+const Paths = () => {
+
+  return <Routes>{paths.map(({ path, element }) => (
+      <Route key={path} element={element} path={path} />
+    ))}</Routes>;
 };
 export default Paths;

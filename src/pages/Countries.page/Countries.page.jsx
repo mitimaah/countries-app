@@ -8,7 +8,7 @@ import { Searchbar } from "../../ui/molecules/Searchbar/SearchBar";
 import { CountryWidget } from "../../ui/organisms/CountryWidget/CountryWidget";
 import "./Countries.page.scss";
 
-const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+const REGIONS = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
 export const CountriesPage = () => {
   // const [countries, setCountries] = useState([]);
@@ -37,7 +37,7 @@ export const CountriesPage = () => {
         />
         <Dropdown 
           children={"Filter by Region"}
-          options={regions}
+          options={REGIONS}
           handleChange={(value) => console.log(value)}
         />
         {/* {countries.map(({ flags, name, continents, capital }, index) => (
@@ -58,9 +58,8 @@ export const CountriesPage = () => {
         columnSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
       >
         {data.map(({ flags, name, population, capital, region }, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <CountryWidget
-              key={index}
               flag={flags.png}
               name={name}
               population={population}
