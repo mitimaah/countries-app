@@ -9,13 +9,13 @@
   box-shadow: var(--box-shadow);
   border-radius: 0.4rem !important;
   padding: 0.5rem 2.5rem 0.5rem 2rem !important;
+  font-size: var(--detail-page-items) !important;
 }
 
 .coutryPageContainer {
   display: flex;
-  // justify-content: flex-start;
   align-items: center;
-  gap: 5rem;
+  gap: 6rem;
   margin-top: 4rem;
 }
 
@@ -24,7 +24,7 @@
   text-transform: none !important;
   background-color: var(--white) !important;
   box-shadow: var(--box-shadow);
-  border-radius: 0.4rem !important;
-  padding: 0 2rem 0 1.5rem !important;
-  margin: 0 0.5rem 0 0.5rem;
+  border-radius: 0.2rem !important;
+  padding: 0.3rem 2rem !important;
+  margin: 0 0.5rem 0.5rem 0 !important;
 }

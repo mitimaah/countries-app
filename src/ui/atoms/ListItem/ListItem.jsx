@@ -8,7 +8,7 @@ import "./ListItem.scss";
 
 export const ListItem = ({ title, value, style }) => {
   return (
-    <MuiListItem disablePadding className="item">
+    <MuiListItem disablePadding >
       <ListItemText
         secondary={
           <React.Fragment>

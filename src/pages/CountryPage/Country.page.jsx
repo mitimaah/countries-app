@@ -38,7 +38,6 @@ export const CountryPage = () => {
       id: 6,
       title: "Top level domain: ",
       value: country.topLevelDomain,
-      // style: { flex: 1, flexBasis: '25%' },
     },
     {
       id: 7,
@@ -56,7 +55,9 @@ export const CountryPage = () => {
     <div className="countryPage">
       <Button
         className="goBackButton"
-        startIcon={<KeyboardBackspaceRoundedIcon />}
+        startIcon={
+          <KeyboardBackspaceRoundedIcon style={{ transform: "scale(1.2)" }} />
+        }
       >
         Back
       </Button>
@@ -72,13 +73,12 @@ export const CountryPage = () => {
           </Typography>
           <List
             sx={{
-              maxHeight: 200,
               ml: 2,
               mt: 2,
               display: "grid",
-              // flexWrap: "wrap",
-              // gridTemplateColumns: "1fr 1fr",
+              gridTemplateRows: "repeat(5, 1fr)",
               gridTemplateColumns: "repeat(2, 1fr)",
+              gridAutoFlow: "column",
             }}
           >
             {listItems.map((el) => (
@@ -86,8 +86,7 @@ export const CountryPage = () => {
                 key={el.id}
                 title={el.title}
                 value={el.value}
-                style={el.style}
-                // style={{ fontSize: "16px", flexBasis: "50%" }}
+                style={{ fontSize: "16px" }}
               />
             ))}
           </List>
@@ -96,13 +95,19 @@ export const CountryPage = () => {
               marginLeft: "1rem",
               marginTop: "2rem",
               display: " flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
             }}
           >
-            <Typography sx={{ fontWeight: "bold", display: "inline" }}>
-              Border countries:
-            </Typography>
+            <div>
+              <Typography
+                style={{
+                  whiteSpace: "nowrap",
+                  marginRight: "1rem",
+                  fontWeight: "bold",
+                }}
+              >
+                Border countries:
+              </Typography>
+            </div>
             <div>
               {country.borders.map((border, index) => (
                 <Button className="borderButton" key={index}>
