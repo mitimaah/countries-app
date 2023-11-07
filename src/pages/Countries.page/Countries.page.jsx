@@ -1,74 +1,76 @@
-// import axios from "axios";
-// import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import data from "../../data.json";
 import { Dropdown } from "../../ui/molecules/Dropdown/Dropdown";
 import { Searchbar } from "../../ui/molecules/Searchbar/SearchBar";
 import { CountryWidget } from "../../ui/organisms/CountryWidget/CountryWidget";
 import "./Countries.page.scss";
 
-const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+const REGIONS = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
 export const CountriesPage = () => {
-  // const [countries, setCountries] = useState([]);
+  const [displayedCoutries, setDisplayedCoutries] = useState(data);
+  const [region, setRegion] = useState("");
+  const [searchCountry, setSearchCountry] = useState("");
+  const [children, setChildren] = useState("Filter by Region");
 
-  // useEffect(() => {
-  //   const fetchCountries = async () => {
-  //     try {
-  //       const response = await axios.get("https://restcountries.com/v3.1/all");
-  //       setCountries(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching todos:", error);
-  //     }
-  //   };
-  //   fetchCountries();
-  // }, []);
+  const handleInputChange = (event) => {
+    const searchTerm = event.target.value;
+    setSearchCountry(searchTerm);
 
-  // console.log(countries)
+    const filteredItems = data.filter((country) =>
+    country.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setDisplayedCoutries(filteredItems);
+  };
+
+  const handleChange = (event) => {
+    setRegion(event.target.value);
+    setChildren("");
+    const filteredCountries = displayedCoutries.filter(
+      (country) => country.region === region
+    );
+    setDisplayedCoutries(filteredCountries);
+  };
+  console.log(region, displayedCoutries);
 
   return (
-    <div className='countriesPage'>
+    <div className="countriesPage">
       <div className="coutriesPageContainer">
         <Searchbar
           placeholder={"Search for a country..."}
-          onChange={() => {}}
+          value={searchCountry}
+          onChange={handleInputChange}
           searchBarWidth={"1pm"}
         />
-        <Dropdown 
-          children={"Filter by Region"}
-          options={regions}
-          handleChange={(value) => console.log(value)}
+        <Dropdown
+          children={children}
+          options={REGIONS}
+          region={region}
+          handleChange={handleChange}
         />
-        {/* {countries.map(({ flags, name, continents, capital }, index) => (
-        <CountryWidget
-          key={index}
-          flag={flags.png}
-          name={name.common}
-          population={name.population}
-          region={continents}
-          capital={capital}
-        />
-      ))} */}
       </div>
-      <Grid className="gridContainer"
+      <Grid
+        className="gridContainer"
         mt={8}
-        container 
+        container
         rowSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
         columnSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
       >
-        {data.map(({ flags, name, population, capital, region }, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-            <CountryWidget
-              key={index}
-              flag={flags.png}
-              name={name}
-              population={population}
-              region={region}
-              capital={capital}
-            />
-          </Grid>
-        ))}
+        {displayedCoutries.map(
+          ({ flags, name, population, capital, region }, index) => (
+            <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+              <CountryWidget
+                flag={flags.png}
+                name={name}
+                population={population}
+                region={region}
+                capital={capital}
+              />
+            </Grid>
+          )
+        )}
       </Grid>
     </div>
   );
