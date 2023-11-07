@@ -1,12 +1,16 @@
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import { Button, List, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import data from "../../data.json";
 import { ListItem } from "../../ui/atoms/ListItem/ListItem";
 import "./Country.page.scss";
 
 export const CountryPage = () => {
+  const navigate = useNavigate();
+
   const country = data[84];
+  console.log(country);
 
   const listItems = [
     {
@@ -58,6 +62,7 @@ export const CountryPage = () => {
         startIcon={
           <KeyboardBackspaceRoundedIcon style={{ transform: "scale(1.2)" }} />
         }
+        onClick={() => navigate("/")}
       >
         Back
       </Button>

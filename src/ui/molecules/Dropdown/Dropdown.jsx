@@ -9,7 +9,7 @@ import {
 import React from "react";
 import "./Dropdown.scss";
 
-export const Dropdown = ({ children, options, handleChange }) => {
+export const Dropdown = ({ children, options, handleChange, region }) => {
   return (
     <Box className="dropdownContainer">
       <FormControl
@@ -22,7 +22,7 @@ export const Dropdown = ({ children, options, handleChange }) => {
           className="select"
           select
           id="multiple-region"
-          value={""}
+          value={region}
           onChange={handleChange}
           InputLabelProps={{ shrink: false }}
           SelectProps={{
