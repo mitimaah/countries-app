@@ -3,7 +3,7 @@ import React from "react";
 import "./CountryWidget.scss";
 import { ListItem } from "../../atoms/ListItem/ListItem";
 
-export const CountryWidget = ({ flag, name, population, region, capital }) => {
+export const CountryWidget = ({ flag, name, population, region, capital, onClick }) => {
   const listItems = [
     {
       id: 1,
@@ -23,7 +23,7 @@ export const CountryWidget = ({ flag, name, population, region, capital }) => {
   ];
 
   return (
-    <Card className="widgetCard">
+    <Card className="widgetCard" onClick={onClick}>
       <CardMedia sx={{ height: 170 }} image={flag} title="flag" />
       <CardContent>
         <Typography

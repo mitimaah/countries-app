@@ -1,22 +1,35 @@
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import { Button, List, Typography } from "@mui/material";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import data from "../../data.json";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { ListItem } from "../../ui/atoms/ListItem/ListItem";
 import "./Country.page.scss";
 
 export const CountryPage = () => {
+  const [country, setCountry] = useState([]);
   const navigate = useNavigate();
+  const { name } = useParams();
 
-  const country = data[84];
-  console.log(country);
+  useEffect(() => {
+    const fetchCountry = async () => {
+      try {
+        const response = await axios.get(
+          `https://restcountries.com/v3.1/name/${name}`
+        );
+        setCountry(response.data);
+      } catch (error) {
+        console.error("Error fetching:", error);
+      }
+    };
+    fetchCountry();
+  }, [name]);
 
   const listItems = [
     {
       id: 1,
       title: "Native name: ",
-      value: country.nativeName,
+      value: country.name.common,
     },
     {
       id: 2,
@@ -36,22 +49,22 @@ export const CountryPage = () => {
     {
       id: 5,
       title: "Capital: ",
-      value: country.capital,
+      value: country.capital[0],
     },
     {
       id: 6,
       title: "Top level domain: ",
-      value: country.topLevelDomain,
+      value: country.tld[0],
     },
     {
       id: 7,
       title: "Currencies: ",
-      value: country.currencies[0].name,
+      value: country.currencies,
     },
     {
       id: 8,
       title: "Languages: ",
-      value: country.languages[0].name,
+      value: country.languages,
     },
   ];
 
@@ -74,7 +87,7 @@ export const CountryPage = () => {
         />
         <div>
           <Typography className="cardHeader" gutterBottom variant="h4">
-            {country.name}
+            {country.name.common}
           </Typography>
           <List
             sx={{
