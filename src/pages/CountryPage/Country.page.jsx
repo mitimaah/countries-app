@@ -1,7 +1,7 @@
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import { Button, List, Typography } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ListItem } from "../../ui/atoms/ListItem/ListItem";
 import "./Country.page.scss";
@@ -11,62 +11,66 @@ export const CountryPage = () => {
   const navigate = useNavigate();
   const { name } = useParams();
 
-  useEffect(() => {
-    const fetchCountry = async () => {
-      try {
-        const response = await axios.get(
-          `https://restcountries.com/v3.1/name/${name}`
-        );
-        setCountry(response.data);
-      } catch (error) {
-        console.error("Error fetching:", error);
-      }
-    };
-    fetchCountry();
+  const fetchCountry = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        `https://restcountries.com/v3.1/name/${name}`
+      );
+      setCountry(response.data[0]);
+    } catch (error) {
+      console.error("Error fetching:", error);
+    }
   }, [name]);
 
-  const listItems = [
-    {
-      id: 1,
-      title: "Native name: ",
-      value: country.name.common,
-    },
-    {
-      id: 2,
-      title: "Population: ",
-      value: `${country.population.toLocaleString("en-US")}`,
-    },
-    {
-      id: 3,
-      title: "Region: ",
-      value: country.region,
-    },
-    {
-      id: 4,
-      title: "Sub region: ",
-      value: country.subregion,
-    },
-    {
-      id: 5,
-      title: "Capital: ",
-      value: country.capital[0],
-    },
-    {
-      id: 6,
-      title: "Top level domain: ",
-      value: country.tld[0],
-    },
-    {
-      id: 7,
-      title: "Currencies: ",
-      value: country.currencies,
-    },
-    {
-      id: 8,
-      title: "Languages: ",
-      value: country.languages,
-    },
-  ];
+  useEffect(() => {
+    fetchCountry();
+  }, [fetchCountry]);
+
+  const listItems = useMemo(
+    () => country.length > 0 && [
+      {
+        id: 1,
+        title: "Native name: ",
+        value: country.name.common,
+      },
+      {
+        id: 2,
+        title: "Population: ",
+        value: `${country.population.toLocaleString("en-US")}`,
+      },
+      {
+        id: 3,
+        title: "Region: ",
+        value: country.region,
+      },
+      {
+        id: 4,
+        title: "Sub region: ",
+        value: country.subregion,
+      },
+      {
+        id: 5,
+        title: "Capital: ",
+        value: country.capital[0],
+      },
+      {
+        id: 6,
+        title: "Top level domain: ",
+        value: country.tld[0],
+      },
+      {
+        id: 7,
+        title: "Currencies: ",
+        value: country.currencies,
+      },
+      {
+        id: 8,
+        title: "Languages: ",
+        value: country.languages,
+      },
+    ],
+    [country]
+  );
 
   return (
     <div className="countryPage">
@@ -99,14 +103,15 @@ export const CountryPage = () => {
               gridAutoFlow: "column",
             }}
           >
-            {listItems.map((el) => (
-              <ListItem
-                key={el.id}
-                title={el.title}
-                value={el.value}
-                style={{ fontSize: "16px" }}
-              />
-            ))}
+            {
+              listItems.map((el) => (
+                <ListItem
+                  key={el.id}
+                  title={el.title}
+                  value={el.value}
+                  style={{ fontSize: "16px" }}
+                />
+              ))}
           </List>
           <div
             style={{

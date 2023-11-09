@@ -1,26 +1,36 @@
 import { Card, CardContent, CardMedia, List, Typography } from "@mui/material";
-import React from "react";
-import "./CountryWidget.scss";
+import React, { useMemo } from "react";
 import { ListItem } from "../../atoms/ListItem/ListItem";
+import "./CountryWidget.scss";
 
-export const CountryWidget = ({ flag, name, population, region, capital, onClick }) => {
-  const listItems = [
-    {
-      id: 1,
-      title: "Population: ",
-      value: `${population.toLocaleString("en-US")}`,
-    },
-    {
-      id: 2,
-      title: "Region: ",
-      value: region,
-    },
-    {
-      id: 3,
-      title: "Capital: ",
-      value: capital,
-    },
-  ];
+export const CountryWidget = ({
+  flag,
+  name,
+  population,
+  region,
+  capital,
+  onClick,
+}) => {
+  const listItems = useMemo(
+    () => [
+      {
+        id: 1,
+        title: "Population: ",
+        value: `${population.toLocaleString("en-US")}`,
+      },
+      {
+        id: 2,
+        title: "Region: ",
+        value: region,
+      },
+      {
+        id: 3,
+        title: "Capital: ",
+        value: capital,
+      },
+    ],
+    [capital, population, region]
+  );
 
   return (
     <Card className="widgetCard" onClick={onClick}>
@@ -36,7 +46,12 @@ export const CountryWidget = ({ flag, name, population, region, capital, onClick
         </Typography>
         <List sx={{ ml: 2 }}>
           {listItems.map((el) => (
-            <ListItem key={el.id} title={el.title} value={el.value} style={{fontSize: '14px'}}/>
+            <ListItem
+              key={el.id}
+              title={el.title}
+              value={el.value}
+              style={{ fontSize: "14px" }}
+            />
           ))}
         </List>
       </CardContent>

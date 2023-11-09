@@ -1,13 +1,13 @@
 import { Grid } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Dropdown } from "../../ui/molecules/Dropdown/Dropdown";
 import { Searchbar } from "../../ui/molecules/Searchbar/SearchBar";
 import { CountryWidget } from "../../ui/organisms/CountryWidget/CountryWidget";
 import "./Countries.page.scss";
 
-const REGIONS = ["Africa", "America", "Asia", "Europe", "Oceania"];
+const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export const CountriesPage = () => {
   const navigate = useNavigate();
@@ -16,17 +16,18 @@ export const CountriesPage = () => {
   const [searchCountry, setSearchCountry] = useState("");
   const [children, setChildren] = useState("Filter by Region");
 
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await axios.get("https://restcountries.com/v3.1/all");
-        setDisplayedCoutries(response.data);
-      } catch (error) {
-        console.error("Error fetching:", error);
-      }
-    };
-    fetchCountries();
+  const fetchCountries = useCallback(async () => {
+    try {
+      const response = await axios.get("https://restcountries.com/v3.1/all");
+      setDisplayedCoutries(response.data);
+    } catch (error) {
+      console.error("Error fetching:", error);
+    }
   }, []);
+
+useEffect(() => {
+  fetchCountries();
+}, [fetchCountries]);
 
   const handleInputChange = (event) => {
     const searchTerm = event.target.value;
@@ -38,7 +39,7 @@ export const CountriesPage = () => {
     setDisplayedCoutries(filteredItems);
   };
 
-  const handleSelectChange = (event) => {
+  const handleSelectChange = useCallback((event) => {
     console.log(region, displayedCoutries);
     setRegion(event.target.value);
     setChildren("");
@@ -46,9 +47,7 @@ export const CountriesPage = () => {
       (country) => country.region === region
     );
     setDisplayedCoutries(filteredCountries);
-  };
-
-  console.log(displayedCoutries);
+  }, [region, displayedCoutries]);
 
   return (
     <div className="countriesPage">
@@ -74,12 +73,12 @@ export const CountriesPage = () => {
         columnSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
       >
         {displayedCoutries.map(
-          ({ flags, name, population, capital, region }, index) => (
-            <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+          ({ flags, name, population, capital, region }) => (
+            <Grid key={name.common} item xs={12} sm={6} md={4} lg={3}>
               <CountryWidget
-                onClick={() => navigate(`/name/${name}`)}
+                onClick={() => navigate(`/name/${name.common}`)}
                 flag={flags.png}
-                name={name}
+                name={name.common}
                 population={population}
                 region={region}
                 capital={capital}
