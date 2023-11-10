@@ -11,66 +11,89 @@ export const CountryPage = () => {
   const navigate = useNavigate();
   const { name } = useParams();
 
-  const fetchCountry = useCallback(async () => {
-    try {
-      const response = await axios.get(
-        `https://restcountries.com/v3.1/name/${name}`
-      );
-      setCountry(response.data[0]);
-    } catch (error) {
-      console.error("Error fetching:", error);
-    }
-  }, [name]);
+  const fetchCountry = useCallback(
+    async ({ signal }) => {
+      try {
+        const response = await axios.get(
+          `https://restcountries.com/v3.1/name/${name}`,
+          { signal }
+        );
+        setCountry(response.data[0]);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log("Fetch aborted:", error);
+        } else {
+          console.error("Error fetching:", error);
+        }
+      }
+    },
+    [name]
+  );
 
   useEffect(() => {
-    fetchCountry();
+    const controller = new AbortController();
+    fetchCountry({ signal: controller.signal });
+
+    return () => {
+      controller.abort();
+    };
   }, [fetchCountry]);
 
   const listItems = useMemo(
-    () => country.length > 0 && [
-      {
-        id: 1,
-        title: "Native name: ",
-        value: country.name.common,
-      },
-      {
-        id: 2,
-        title: "Population: ",
-        value: `${country.population.toLocaleString("en-US")}`,
-      },
-      {
-        id: 3,
-        title: "Region: ",
-        value: country.region,
-      },
-      {
-        id: 4,
-        title: "Sub region: ",
-        value: country.subregion,
-      },
-      {
-        id: 5,
-        title: "Capital: ",
-        value: country.capital[0],
-      },
-      {
-        id: 6,
-        title: "Top level domain: ",
-        value: country.tld[0],
-      },
-      {
-        id: 7,
-        title: "Currencies: ",
-        value: country.currencies,
-      },
-      {
-        id: 8,
-        title: "Languages: ",
-        value: country.languages,
-      },
-    ],
+    () =>
+      country?.length > 0 && [
+        {
+          id: 1,
+          title: "Native name: ",
+          value: country?.name?.common,
+        },
+        {
+          id: 2,
+          title: "Population: ",
+          value: `${country?.population?.toLocaleString("en-US")}`,
+        },
+        {
+          id: 3,
+          title: "Region: ",
+          value: country?.region,
+        },
+        {
+          id: 4,
+          title: "Sub region: ",
+          value: country?.subregion,
+        },
+        {
+          id: 5,
+          title: "Capital: ",
+          value: country?.capital[0],
+        },
+        {
+          id: 6,
+          title: "Top level domain: ",
+          value: country?.tld[0],
+        },
+        {
+          id: 7,
+          title: "Currencies: ",
+          value: Object?.values(country?.currencies)[0].name,
+        },
+        {
+          id: 8,
+          title: "Languages: ",
+          value: Object?.values(country?.languages).join(", "),
+        },
+      ],
     [country]
   );
+
+  // console.log(
+  //   country.region,
+  //   country.subregion,
+  //   country.capital[0],
+  //   country.tld[0],
+  //   Object?.values(country?.currencies)[0].name,
+  //   Object?.values(country?.languages).join(", "),
+  // );
 
   return (
     <div className="countryPage">
@@ -85,13 +108,13 @@ export const CountryPage = () => {
       </Button>
       <div className="coutryPageContainer">
         <img
-          style={{ height: 430, aspectRatio: 7 / 5 }}
-          src="https://flagcdn.com/w320/de.png"
+          style={{ width: 603, aspectRatio: 7 / 3.9 }}
+          src={country?.flags?.svg}
           alt="flag"
         />
         <div>
           <Typography className="cardHeader" gutterBottom variant="h4">
-            {country.name.common}
+            {country?.name?.common}
           </Typography>
           <List
             sx={{
@@ -103,7 +126,7 @@ export const CountryPage = () => {
               gridAutoFlow: "column",
             }}
           >
-            {
+            {listItems &&
               listItems.map((el) => (
                 <ListItem
                   key={el.id}
@@ -113,32 +136,34 @@ export const CountryPage = () => {
                 />
               ))}
           </List>
-          <div
-            style={{
-              marginLeft: "1rem",
-              marginTop: "2rem",
-              display: " flex",
-            }}
-          >
-            <div>
-              <Typography
-                style={{
-                  whiteSpace: "nowrap",
-                  marginRight: "1rem",
-                  fontWeight: "bold",
-                }}
-              >
-                Border countries:
-              </Typography>
+          {country?.borders && (
+            <div
+              style={{
+                marginLeft: "1rem",
+                marginTop: "2rem",
+                display: " flex",
+              }}
+            >
+              <div>
+                <Typography
+                  style={{
+                    whiteSpace: "nowrap",
+                    marginRight: "1rem",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Border countries:
+                </Typography>
+              </div>
+              <div>
+                {country?.borders?.map((border, index) => (
+                  <Button className="borderButton" key={index}>
+                    {border}
+                  </Button>
+                ))}
+              </div>
             </div>
-            <div>
-              {country.borders.map((border, index) => (
-                <Button className="borderButton" key={index}>
-                  {border}
-                </Button>
-              ))}
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

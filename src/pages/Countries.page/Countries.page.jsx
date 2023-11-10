@@ -77,7 +77,7 @@ useEffect(() => {
             <Grid key={name.common} item xs={12} sm={6} md={4} lg={3}>
               <CountryWidget
                 onClick={() => navigate(`/name/${name.common}`)}
-                flag={flags.png}
+                flag={flags.svg}
                 name={name.common}
                 population={population}
                 region={region}
