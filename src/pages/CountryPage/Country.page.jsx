@@ -67,25 +67,15 @@ export const CountryPage = () => {
         Back
       </Button>
       <div className="coutryPageContainer">
-        <img
-          style={{ height: 430, aspectRatio: 7 / 5 }}
+        <img className="flag"
           src="https://flagcdn.com/w320/de.png"
           alt="flag"
         />
         <div>
-          <Typography className="cardHeader" gutterBottom variant="h4">
+          <Typography className="countryName" gutterBottom>
             {country.name}
           </Typography>
-          <List
-            sx={{
-              ml: 2,
-              mt: 2,
-              display: "grid",
-              gridTemplateRows: "repeat(5, 1fr)",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gridAutoFlow: "column",
-            }}
-          >
+          <List className="list">
             {listItems.map((el) => (
               <ListItem
                 key={el.id}
@@ -95,23 +85,9 @@ export const CountryPage = () => {
               />
             ))}
           </List>
-          <div
-            style={{
-              marginLeft: "1rem",
-              marginTop: "2rem",
-              display: " flex",
-            }}
-          >
-            <div>
-              <Typography
-                style={{
-                  whiteSpace: "nowrap",
-                  marginRight: "1rem",
-                  fontWeight: "bold",
-                }}
-              >
-                Border countries:
-              </Typography>
+          <div className="bordersContainer">
+            <div className="borderCountriesTitle">
+              <Typography sx={{fontWeight: 'bold'}}>Border countries:</Typography>
             </div>
             <div>
               {country.borders.map((border, index) => (
