@@ -41,7 +41,7 @@ export const CountryPage = () => {
 
   const listItems = useMemo(
     () =>
-      country?.length > 0 && [
+      Object.keys(country).length > 0 && [
         {
           id: 1,
           title: "Native name: ",

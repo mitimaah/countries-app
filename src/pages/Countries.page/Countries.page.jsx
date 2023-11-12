@@ -11,6 +11,7 @@ const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export const CountriesPage = () => {
   const navigate = useNavigate();
+  const [fetchedCoutries, setFetchedCoutries] = useState([]);
   const [displayedCoutries, setDisplayedCoutries] = useState([]);
   const [region, setRegion] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
@@ -20,6 +21,7 @@ export const CountriesPage = () => {
     try {
       const response = await axios.get("https://restcountries.com/v3.1/all");
       setDisplayedCoutries(response.data);
+      setFetchedCoutries(response.data);
     } catch (error) {
       console.error("Error fetching:", error);
     }
@@ -39,15 +41,15 @@ useEffect(() => {
     setDisplayedCoutries(filteredItems);
   };
 
-  const handleSelectChange = useCallback((event) => {
+  const handleSelectChange = (event) => {
     console.log(region, displayedCoutries);
     setRegion(event.target.value);
     setChildren("");
-    const filteredCountries = displayedCoutries.filter(
-      (country) => country.region === region
+    const filteredCountries = fetchedCoutries.filter(
+      (country) => country.region === event.target.value
     );
     setDisplayedCoutries(filteredCountries);
-  }, [region, displayedCoutries]);
+    console.log(event.target.value);}
 
   return (
     <div className="countriesPage">
