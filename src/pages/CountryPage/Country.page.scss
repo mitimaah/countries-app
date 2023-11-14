@@ -19,6 +19,12 @@
   margin-top: 4rem;
 }
 
+.countryName {
+  color: var(--very-dark-blue);
+  font-weight: var(--extra-bold) !important;
+  font-size: 2.3rem !important;
+}
+
 .borderButton {
   color: var(--very-dark-blue) !important;
   text-transform: none !important;
@@ -27,4 +33,77 @@
   border-radius: 0.2rem !important;
   padding: 0.3rem 2rem !important;
   margin: 0 0.5rem 0.5rem 0 !important;
+}
+
+.flag {
+  height: 26rem; 
+  // width: 603px;
+  aspect-ratio: auto;
+  // aspect-ratio: 7 / 3.9;
+}
+
+.list {
+  margin-left: 2;
+  margin-top: 2;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: column;
+}
+
+.bordersContainer {
+  margin-top: 2rem;
+  display: flex;
+  font-weight: var(--bold) !important;
+}
+
+.borderCountriesTitle {
+  white-space: nowrap;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .coutryPageContainer {
+    flex-direction: column;
+    gap: 4rem;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .flag {
+    height: 18rem;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .list {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, 1fr);
+    grid-row-gap: 0.5rem;
+  }
+
+  .bordersContainer {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .flag {
+    height: 15rem;
+  }
+}
+
+@media only screen and (max-width: 376px) {
+  .flag {
+    height: 12rem;
+  }
+
+  .coutryPageContainer {
+    gap: 3rem;
+  }
+
+  .countryName {
+    font-size: 1.8rem !important;
+  }
 }

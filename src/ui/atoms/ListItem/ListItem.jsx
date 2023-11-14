@@ -9,7 +9,7 @@ import "./ListItem.scss";
 export const ListItem = ({ title, value, style }) => {
   return (
     <MuiListItem disablePadding >
-      <ListItemText
+      <ListItemText 
         secondary={
           <React.Fragment>
             <Typography

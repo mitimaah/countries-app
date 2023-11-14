@@ -86,15 +86,6 @@ export const CountryPage = () => {
     [country]
   );
 
-  // console.log(
-  //   country.region,
-  //   country.subregion,
-  //   country.capital[0],
-  //   country.tld[0],
-  //   Object?.values(country?.currencies)[0].name,
-  //   Object?.values(country?.languages).join(", "),
-  // );
-
   return (
     <div className="countryPage">
       <Button
@@ -107,24 +98,16 @@ export const CountryPage = () => {
         Back
       </Button>
       <div className="coutryPageContainer">
-        <img
-          style={{ width: 603, aspectRatio: 7 / 3.9 }}
+        <img className="flag"
           src={country?.flags?.svg}
           alt="flag"
         />
         <div>
-          <Typography className="cardHeader" gutterBottom variant="h4">
+          <Typography className="countryName" gutterBottom>
             {country?.name?.common}
           </Typography>
           <List
-            sx={{
-              ml: 2,
-              mt: 2,
-              display: "grid",
-              gridTemplateRows: "repeat(5, 1fr)",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gridAutoFlow: "column",
-            }}
+            className="list"
           >
             {listItems &&
               listItems.map((el) => (
@@ -138,17 +121,11 @@ export const CountryPage = () => {
           </List>
           {country?.borders && (
             <div
-              style={{
-                marginLeft: "1rem",
-                marginTop: "2rem",
-                display: " flex",
-              }}
+            className="bordersContainer"
             >
-              <div>
+              <div className="borderCountriesTitle">
                 <Typography
-                  style={{
-                    whiteSpace: "nowrap",
-                    marginRight: "1rem",
+                  sx={{
                     fontWeight: "bold",
                   }}
                 >
