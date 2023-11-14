@@ -1,39 +1,55 @@
 import { Grid } from "@mui/material";
-import React, { useState } from "react";
-import data from "../../data.json";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dropdown } from "../../ui/molecules/Dropdown/Dropdown";
 import { Searchbar } from "../../ui/molecules/Searchbar/SearchBar";
 import { CountryWidget } from "../../ui/organisms/CountryWidget/CountryWidget";
 import "./Countries.page.scss";
 
-const REGIONS = ["Africa", "America", "Asia", "Europe", "Oceania"];
+const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export const CountriesPage = () => {
-  const [displayedCoutries, setDisplayedCoutries] = useState(data);
+  const navigate = useNavigate();
+  const [fetchedCoutries, setFetchedCoutries] = useState([]);
+  const [displayedCoutries, setDisplayedCoutries] = useState([]);
   const [region, setRegion] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
   const [children, setChildren] = useState("Filter by Region");
 
+  const fetchCountries = useCallback(async () => {
+    try {
+      const response = await axios.get("https://restcountries.com/v3.1/all");
+      setDisplayedCoutries(response.data);
+      setFetchedCoutries(response.data);
+    } catch (error) {
+      console.error("Error fetching:", error);
+    }
+  }, []);
+
+useEffect(() => {
+  fetchCountries();
+}, [fetchCountries]);
+
   const handleInputChange = (event) => {
     const searchTerm = event.target.value;
     setSearchCountry(searchTerm);
-
-    const filteredItems = data.filter((country) =>
-    country.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredItems = displayedCoutries.filter((country) =>
+      country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setDisplayedCoutries(filteredItems);
   };
 
-  const handleChange = (event) => {
+  const handleSelectChange = (event) => {
+    console.log(region, displayedCoutries);
     setRegion(event.target.value);
     setChildren("");
-    const filteredCountries = displayedCoutries.filter(
-      (country) => country.region === region
+    const filteredCountries = fetchedCoutries.filter(
+      (country) => country.region === event.target.value
     );
     setDisplayedCoutries(filteredCountries);
-  };
-  console.log(region, displayedCoutries);
+    console.log(event.target.value);}
 
   return (
     <div className="countriesPage">
@@ -48,7 +64,7 @@ export const CountriesPage = () => {
           children={children}
           options={REGIONS}
           region={region}
-          handleChange={handleChange}
+          handleChange={handleSelectChange}
         />
       </div>
       <Grid
@@ -59,11 +75,12 @@ export const CountriesPage = () => {
         columnSpacing={{ xs: 6, sm: 7, md: 8, lg: 10 }}
       >
         {displayedCoutries.map(
-          ({ flags, name, population, capital, region }, index) => (
-            <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+          ({ flags, name, population, capital, region }) => (
+            <Grid key={name.common} item xs={12} sm={6} md={4} lg={3}>
               <CountryWidget
-                flag={flags.png}
-                name={name}
+                onClick={() => navigate(`/name/${name.common}`)}
+                flag={flags.svg}
+                name={name.common}
                 population={population}
                 region={region}
                 capital={capital}
