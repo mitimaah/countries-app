@@ -3,11 +3,12 @@ import { Button, List, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ListItem } from "../../ui/atoms/ListItem/ListItem";
+import { ListItem } from "../../ui/atoms/ListItem/ListItem.tsx";
 import "./Country.page.scss";
+import { CountryDetails } from "./CountryPage.type.ts";
 
 export const CountryPage = () => {
-  const [country, setCountry] = useState([]);
+  const [country, setCountry] = useState<[]>([]);
   const navigate = useNavigate();
   const { name } = useParams();
 
@@ -39,48 +40,48 @@ export const CountryPage = () => {
     };
   }, [fetchCountry]);
 
-  const listItems = useMemo(
+  const listItems: Boolean | CountryDetails[] = useMemo(
     () =>
       Object.keys(country).length > 0 && [
         {
           id: 1,
           title: "Native name: ",
-          value: country?.name?.common,
+          value: country.name.common,
         },
         {
           id: 2,
           title: "Population: ",
-          value: `${country?.population?.toLocaleString("en-US")}`,
+          value: `${country.population.toLocaleString("en-US")}`,
         },
         {
           id: 3,
           title: "Region: ",
-          value: country?.region,
+          value: country.region,
         },
         {
           id: 4,
           title: "Sub region: ",
-          value: country?.subregion,
+          value: country.subregion,
         },
         {
           id: 5,
           title: "Capital: ",
-          value: country?.capital[0],
+          value: country.capital[0],
         },
         {
           id: 6,
           title: "Top level domain: ",
-          value: country?.tld[0],
+          value: country.tld[0],
         },
         {
           id: 7,
           title: "Currencies: ",
-          value: Object?.values(country?.currencies)[0].name,
+          value: Object?.values(country.currencies)[0].name,
         },
         {
           id: 8,
           title: "Languages: ",
-          value: Object?.values(country?.languages).join(", "),
+          value: Object?.values(country.languages).join(", "),
         },
       ],
     [country]
@@ -98,17 +99,12 @@ export const CountryPage = () => {
         Back
       </Button>
       <div className="coutryPageContainer">
-        <img className="flag"
-          src={country?.flags?.svg}
-          alt="flag"
-        />
+        <img className="flag" src={country?.flags?.svg} alt="flag" />
         <div>
           <Typography className="countryName" gutterBottom>
             {country?.name?.common}
           </Typography>
-          <List
-            className="list"
-          >
+          <List className="list">
             {listItems &&
               listItems.map((el) => (
                 <ListItem
@@ -120,9 +116,7 @@ export const CountryPage = () => {
               ))}
           </List>
           {country?.borders && (
-            <div
-            className="bordersContainer"
-            >
+            <div className="bordersContainer">
               <div className="borderCountriesTitle">
                 <Typography
                   sx={{

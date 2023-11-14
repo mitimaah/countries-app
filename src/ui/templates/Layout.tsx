@@ -1,8 +1,8 @@
 import { Box, Container } from "@mui/material";
 import React from "react";
-import { AppBar } from "../../ui/index";
+import { AppBar } from "../organisms/AppBar/AppBar.tsx";
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   return (
     <>
       <AppBar />

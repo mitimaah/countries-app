@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import Paths from "./pages/routes.tsx";
-import { Layout } from "./ui";
+import { Layout } from "./ui/templates/Layout.tsx";
 
 function App() {
   return (

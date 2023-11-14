@@ -8,8 +8,14 @@ import {
 } from "@mui/material";
 import React from "react";
 import "./Dropdown.scss";
+import { DropdownProps } from "./Dropdown.type";
 
-export const Dropdown = ({ children, options, handleChange, region }) => {
+export const Dropdown = ({
+  children,
+  options,
+  handleChange,
+  region,
+}: DropdownProps) => {
   return (
     <Box className="dropdownContainer">
       <FormControl
