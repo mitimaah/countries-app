@@ -2,20 +2,20 @@ import { Grid } from "@mui/material";
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Dropdown } from "../../ui/molecules/Dropdown/Dropdown";
-import { Searchbar } from "../../ui/molecules/Searchbar/SearchBar";
-import { CountryWidget } from "../../ui/organisms/CountryWidget/CountryWidget";
+import { Dropdown } from "../../ui/molecules/Dropdown/Dropdown.tsx";
+import { Searchbar } from "../../ui/molecules/Searchbar/SearchBar.tsx";
+import { CountryWidget } from "../../ui/organisms/CountryWidget/CountryWidget.tsx";
 import "./Countries.page.scss";
 
 const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export const CountriesPage = () => {
   const navigate = useNavigate();
-  const [fetchedCoutries, setFetchedCoutries] = useState([]);
-  const [displayedCoutries, setDisplayedCoutries] = useState([]);
-  const [region, setRegion] = useState("");
-  const [searchCountry, setSearchCountry] = useState("");
-  const [children, setChildren] = useState("Filter by Region");
+  const [fetchedCoutries, setFetchedCoutries] = useState<any[]>([]);
+  const [displayedCoutries, setDisplayedCoutries] = useState<any[]>([]);
+  const [region, setRegion] = useState<string>("");
+  const [searchCountry, setSearchCountry] = useState<string>("");
+  const [children, setChildren] = useState<string>("Filter by Region");
 
   const fetchCountries = useCallback(async () => {
     try {
@@ -27,11 +27,11 @@ export const CountriesPage = () => {
     }
   }, []);
 
-useEffect(() => {
-  fetchCountries();
-}, [fetchCountries]);
+  useEffect(() => {
+    fetchCountries();
+  }, [fetchCountries]);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = event.target.value;
     setSearchCountry(searchTerm);
     const filteredItems = displayedCoutries.filter((country) =>
@@ -41,15 +41,14 @@ useEffect(() => {
     setDisplayedCoutries(filteredItems);
   };
 
-  const handleSelectChange = (event) => {
-    console.log(region, displayedCoutries);
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setRegion(event.target.value);
     setChildren("");
     const filteredCountries = fetchedCoutries.filter(
       (country) => country.region === event.target.value
     );
     setDisplayedCoutries(filteredCountries);
-    console.log(event.target.value);}
+  };
 
   return (
     <div className="countriesPage">
@@ -58,7 +57,7 @@ useEffect(() => {
           placeholder={"Search for a country..."}
           value={searchCountry}
           onChange={handleInputChange}
-          searchBarWidth={"1pm"}
+          searchBarWidth="1pm"
         />
         <Dropdown
           children={children}

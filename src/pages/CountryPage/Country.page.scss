@@ -36,9 +36,8 @@
 }
 
 .flag {
-  height: 26rem; 
-  // width: 603px;
-  aspect-ratio: auto;
+  height: 18.8rem; 
+  // aspect-ratio: auto;
   // aspect-ratio: 7 / 3.9;
 }
 
@@ -70,12 +69,6 @@
   }
 }
 
-@media only screen and (max-width: 750px) {
-  .flag {
-    height: 18rem;
-  }
-}
-
 @media only screen and (max-width: 650px) {
   .list {
     grid-template-columns: 1fr;
@@ -96,7 +89,7 @@
 
 @media only screen and (max-width: 376px) {
   .flag {
-    height: 12rem;
+    max-height: 12rem;
   }
 
   .coutryPageContainer {

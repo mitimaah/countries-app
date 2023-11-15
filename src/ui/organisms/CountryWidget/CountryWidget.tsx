@@ -1,7 +1,8 @@
 import { Card, CardContent, CardMedia, List, Typography } from "@mui/material";
 import React, { useMemo } from "react";
-import { ListItem } from "../../atoms/ListItem/ListItem";
+import { ListItem } from "../../atoms/ListItem/ListItem.tsx";
 import "./CountryWidget.scss";
+import { CountryDetails } from "../../../pages/CountryPage/CountryPage.type.ts";
 
 export const CountryWidget = ({
   flag,
@@ -11,7 +12,7 @@ export const CountryWidget = ({
   capital,
   onClick,
 }) => {
-  const listItems = useMemo(
+  const listItems: CountryDetails[] = useMemo(
     () => [
       {
         id: 1,
