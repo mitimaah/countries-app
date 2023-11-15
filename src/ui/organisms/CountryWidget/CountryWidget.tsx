@@ -12,7 +12,7 @@ export const CountryWidget = ({
   capital,
   onClick,
 }) => {
-  const listItems: CountryDetails[] = useMemo(
+  const listItems = useMemo<CountryDetails[]>(
     () => [
       {
         id: 1,

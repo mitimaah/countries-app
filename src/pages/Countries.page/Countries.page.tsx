@@ -6,15 +6,16 @@ import { Dropdown } from "../../ui/molecules/Dropdown/Dropdown.tsx";
 import { Searchbar } from "../../ui/molecules/Searchbar/SearchBar.tsx";
 import { CountryWidget } from "../../ui/organisms/CountryWidget/CountryWidget.tsx";
 import "./Countries.page.scss";
+import { CountriesList } from "./CountriesPage.type.ts";
 
 const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export const CountriesPage = () => {
   const navigate = useNavigate();
-  const [fetchedCoutries, setFetchedCoutries] = useState<any[]>([]);
-  const [displayedCoutries, setDisplayedCoutries] = useState<any[]>([]);
-  const [region, setRegion] = useState<string>("");
-  const [searchCountry, setSearchCountry] = useState<string>("");
+  const [fetchedCoutries, setFetchedCoutries] = useState<CountriesList[]>([]);
+  const [displayedCoutries, setDisplayedCoutries] = useState<CountriesList[]>([]);
+  const [region, setRegion] = useState("");
+  const [searchCountry, setSearchCountry] = useState("");
   const [children, setChildren] = useState<string>("Filter by Region");
 
   const fetchCountries = useCallback(async () => {

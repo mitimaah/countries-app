@@ -3,11 +3,11 @@ import {
   ListItem as MuiListItem,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { FC } from "react";
 import "./ListItem.scss";
 import { ListItemProps } from "./ListItem.type";
 
-export const ListItem = ({ title, value, style }: ListItemProps) => {
+export const ListItem: FC<ListItemProps> = ({ title, value, style }) => {
   return (
     <MuiListItem disablePadding>
       <ListItemText

@@ -6,9 +6,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ListItem } from "../../ui/atoms/ListItem/ListItem.tsx";
 import "./Country.page.scss";
 import { CountryDetails } from "./CountryPage.type.ts";
+import { CountriesList } from "../Countries.page/CountriesPage.type.ts";
 
 export const CountryPage = () => {
-  const [country, setCountry] = useState<[]>([]);
+  const [country, setCountry] = useState<CountriesList[]>([]);
   const navigate = useNavigate();
   const { name } = useParams();
 
