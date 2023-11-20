@@ -61,7 +61,7 @@ export const CountriesPage = () => {
           searchBarWidth="1pm"
         />
         <Dropdown
-          children={children}
+          label={children}
           options={REGIONS}
           region={region}
           handleChange={handleSelectChange}

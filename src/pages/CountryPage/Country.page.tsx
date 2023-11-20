@@ -4,12 +4,12 @@ import axios from "axios";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ListItem } from "../../ui/atoms/ListItem/ListItem.tsx";
+import { CountriesList } from "../Countries.page/CountriesPage.type.ts";
 import "./Country.page.scss";
 import { CountryDetails } from "./CountryPage.type.ts";
-import { CountriesList } from "../Countries.page/CountriesPage.type.ts";
 
 export const CountryPage = () => {
-  const [country, setCountry] = useState<CountriesList[]>([]);
+  const [country, setCountry] = useState<CountriesList | null>(null);
   const navigate = useNavigate();
   const { name } = useParams();
 
@@ -40,10 +40,10 @@ export const CountryPage = () => {
       controller.abort();
     };
   }, [fetchCountry]);
-
-  const listItems: Boolean | CountryDetails[] = useMemo(
+  
+  const listItems: boolean | CountryDetails[] = useMemo(
     () =>
-      Object.keys(country).length > 0 && [
+      country !== null && [
         {
           id: 1,
           title: "Native name: ",

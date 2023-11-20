@@ -7,25 +7,25 @@ import {
   TextField,
 } from "@mui/material";
 import React from "react";
-import "./Dropdown.scss";
+import style from "./Dropdown.module.scss";
 import { DropdownProps } from "./Dropdown.type";
 
 export const Dropdown = ({
-  children,
+  label,
   options,
   handleChange,
   region,
 }: DropdownProps) => {
   return (
-    <Box className="dropdownContainer">
+    <Box className={style.dropdownContainer}>
       <FormControl
         sx={{
           width: 300,
         }}
       >
-        <InputLabel className="inputLabel">{children}</InputLabel>
+        <InputLabel className={style.inputLabel}>{label}</InputLabel>
         <TextField
-          className="select"
+          className={style.select}
           select
           id="multiple-region"
           value={region}
