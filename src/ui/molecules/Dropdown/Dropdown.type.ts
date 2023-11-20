@@ -1,5 +1,5 @@
 export interface DropdownProps {
-    children: string,
+    label: string,
     options: string[],
     handleChange;
     region: string
