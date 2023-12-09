@@ -20,7 +20,7 @@ export const CountriesPage = () => {
 
   const fetchCountries = useCallback(async () => {
     try {
-      const response = await axios.get("https://restcountries.com/v3.1/all");
+      const response = await axios.get<CountriesList[]>("https://restcountries.com/v3.1/all");
       setDisplayedCoutries(response.data);
       setFetchedCoutries(response.data);
     } catch (error) {
