@@ -21,10 +21,15 @@ export const Dropdown = ({
       <FormControl
         sx={{
           width: 300,
+          "& .MuiFormControl-root .Mui-focused .MuiOutlinedInput-notchedOutline":
+            {
+              border: 0,
+            },
         }}
       >
         <InputLabel className={style.inputLabel}>{label}</InputLabel>
         <TextField
+          sx={{ ".MuiOutlinedInput-notchedOutline": { border: 0 } }}
           className={style.select}
           select
           id="multiple-region"

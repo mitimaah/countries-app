@@ -1,7 +1,7 @@
 import KeyboardBackspaceRoundedIcon from "@mui/icons-material/KeyboardBackspaceRounded";
 import { Button, List, Typography } from "@mui/material";
 import axios from "axios";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ListItem } from "../../ui/atoms/ListItem/ListItem.tsx";
 import { CountriesList } from "../Countries.page/CountriesPage.type.ts";
@@ -16,7 +16,7 @@ export const CountryPage = () => {
   const fetchCountry = useCallback(
     async ({ signal }) => {
       try {
-        const response = await axios.get(
+        const response = await axios.get<CountriesList>(
           `https://restcountries.com/v3.1/name/${name}`,
           { signal }
         );
@@ -40,8 +40,8 @@ export const CountryPage = () => {
       controller.abort();
     };
   }, [fetchCountry]);
-  
-  const listItems: boolean | CountryDetails[] = useMemo(
+
+  const listItems = useMemo<boolean | CountryDetails[]>(
     () =>
       country !== null && [
         {
@@ -96,6 +96,9 @@ export const CountryPage = () => {
           <KeyboardBackspaceRoundedIcon style={{ transform: "scale(1.2)" }} />
         }
         onClick={() => navigate("/")}
+        // sx={{
+        //   color: 
+        // }}
       >
         Back
       </Button>
